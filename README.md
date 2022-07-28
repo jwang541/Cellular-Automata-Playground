@@ -1,4 +1,4 @@
-# Cellular-Automata-Playground
+# Cellular Automata Playground
  
 [Use the webapp here!](https://jwang541.github.io/Cellular-Automata-Playground/)
 
