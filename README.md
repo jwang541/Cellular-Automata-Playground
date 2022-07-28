@@ -1,4 +1,4 @@
-# Cellular-Automata-Playground
+# Cellular Automata Playground
  
 ## Introduction
 A cellular automaton is a grid of cells, each of which has a state (such as alive/dead). To get the next "generation" of a cellular automaton, the new state of each cell depends on the current states of the cells around it, according to some set of rules.
