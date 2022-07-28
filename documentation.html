@@ -1,0 +1,174 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Documentation</title>
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="top-menu">
+        <div style="display: inline-block; padding-left: 5%">
+            <h1>Documentation</h1>
+        </div>
+        <div style="float: right; padding-right: 5%">
+            <a href="./index.html"><h2 style="margin-bottom: 0px; font-size: 16px">Playground</h2></a>
+            <a href="./documentation.html"><h2 style="font-size: 16px">Documentation</h2></a>
+        </div>
+    </div>
+    <div class="main-content">
+        <h2>Defining a Ruleset</h2>
+        <p>
+            To define a custom ruleset, one must define 2 transition rules,
+            which should be formal expressions which evaluate to either <code>true</code> or <code>false</code>.
+            <br /><br />
+            For a given cell that is alive (black),
+            if the "Alive → Alive" transition is satisfied,
+            that cell will remain alive in the next generation.
+            Otherwise, the cell becomes dead (white).
+            <br /><br />
+            For a given cell that is dead,
+            if the "Dead → Alive" transition is satisfied,
+            that cell will become alive in the next generation.
+            Otherwise, the cell remains dead.
+            <br /><br />
+        </p>
+        <hr class="solid" />
+        <h2>Example: Conway's Game of Life</h2>
+        <p>
+            One famous cellular automaton is Conway's Game of Life. It can be stated as follows: <br />
+            <br />
+            &emsp;&emsp;1.) Live cells with two (2) or three (3) live neighbours survive. <br />
+            &emsp;&emsp;2.) Dead cells with exactly three (3) live neighbours become a live cells. <br />
+            &emsp;&emsp;3.) All other cells become or remain dead. <br />
+            <br />
+            We can formulate these rules as two (2) transitions: <br />
+            <br />
+            Alive → Alive: <code>alive(neighbors(1)) in set(2, 3)</code><br />
+            Dead → Alive: <code>alive(neighbors(1)) = 3</code><br />
+            <br />
+            Let's examine the transition for Alive → Alive. <br />
+            <br />
+            &emsp;&emsp;<code>neighbors(1)</code> will return a representation of the 8 orthagonal
+            and diagonal neighbors for a given cell. <br />
+            &emsp;&emsp;<code>alive(neighbors(1))</code> will return the number of those 8 neighbors which are alive. <br />
+            &emsp;&emsp;<code>set(2, 3)</code> will create a set containing the numbers 2 and 3. <br />
+            &emsp;&emsp;<code>alive(neighbors(1)) in set(2, 3)</code> will return a boolean representing whether or not the number of alive
+            neighbors of a given cell is 2 or 3. <br />
+            <br />
+            Thus, the expression represents the idea: 
+            "Live cells with two (2) or three (3) live neighbours survive, otherwise they die."<br />
+            <br />
+            Below is a list of the various functions you can use to write the transiton rules.
+        </p>
+        <br />
+        <hr class="solid" />
+        <h2>Library</h2>
+        <table id="documentation-table" style="width: 100%">
+            <colgroup>
+                <col span="1" style="width: 5%;">
+                <col span="1" style="width: 20%;">
+                <col span="1" style="width: 5%;">
+                <col span="1" style="width: 70%;">
+            </colgroup>
+            <tr>
+                <th>Function</th>
+                <th>Usage</th>
+                <th>Return</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>=</td>
+                <td>
+                    <code>INT_1 = INT_2</code>
+                    <br /><br />
+                    <code>BOOL_1 = BOOL_2</code>
+                </td>
+                <td>Boolean</td>
+                <td>Returns <code>true</code> if arguments are equal, <code>false</code> otherwise.</td>
+            </tr>
+            <tr>
+                <td>+</td>
+                <td><code>INT_1 + INT_2</code></td>
+                <td>Integer</td>
+                <td>Returns the sum of <code>INT_1</code> and <code>INT_2</code>.</td>
+            </tr>
+            <tr>
+                <td>-</td>
+                <td><code>INT_1 - INT_2</code></td>
+                <td>Integer</td>
+                <td>Returns the difference of <code>INT_1</code> and <code>INT_2</code>.</td>
+            </tr>
+            <tr>
+                <td>not</td>
+                <td><code>not BOOL_1</code></td>
+                <td>Boolean</td>
+                <td>Returns the negation of <code>BOOL_1</code>.</td>
+            </tr>
+            <tr>
+                <td>and</td>
+                <td><code>BOOL_1 and BOOL_2</code></td>
+                <td>Boolean</td>
+                <td>Returns the conjunction of <code>BOOL_1</code> and <code>BOOL_2</code>.</td>
+            </tr>
+            <tr>
+                <td>or</td>
+                <td><code>BOOL_1 and BOOL_2</code></td>
+                <td>Boolean</td>
+                <td>Returns the disjunction of <code>BOOL_1</code> and <code>BOOL_2</code>.</td>
+            </tr>
+            <tr>
+                <td>set</td>
+                <td><code>set(INT_1, ...)</code></td>
+                <td>Set</td>
+                <td>Returns a set containing all of the arguments. Can contain duplicates.</td>
+            </tr>
+            <tr>
+                <td>interval</td>
+                <td><code>interval(INT_1, INT_2)</code></td>
+                <td>Set</td>
+                <td>Returns a set containing all of the integers from <code>INT_1</code> to <code>INT_2</code>, inclusive.</td>
+            </tr>
+            <tr>
+                <td>union</td>
+                <td><code>SET_1 union SET_2</code></td>
+                <td>Set</td>
+                <td>Returns the union of <code>SET_1</code> and <code>SET_2</code>. Can contain duplicates.</td>
+            </tr>
+            <tr>
+                <td>in</td>
+                <td><code>INT_1 in SET_1</code></td>
+                <td>Boolean</td>
+                <td>Returns <code>true</code> if <code>SET_1</code> contains an element equal to <code>INT_1</code>, <code>false</code> otherwise.</td>
+            </tr>
+            <tr>
+                <td>neighbors</td>
+                <td><code>neighbors(INT_1, ...)</code></td>
+                <td>Set</td>
+                <td>
+                    <code>neighbors(0)</code> will return <code>set(0, 0)</code>.
+                    <br /><br />
+                    <code>neighbors(1)</code> will return <code>set(-1, -1, -1, 0, -1, 1, 0, -1, 0, 1, 1, -1, 1, 0, 1, 1)</code>.
+                    This is a representation of the 8 orthagonally and diagonally adjacent cells) of a given cell.
+                    <br /><br />
+                    For N > 0, <code>neighbors(N)</code> will return a square-shaped perimeter of cells of length <code>2N + 1</code> centered around a given cell.
+                    <br /><br />
+                    <code>neighbors(N_1, N_2, ...)</code> will return a union of <code>neighbors(N_1)</code>, <code>neighbors(N_2)</code>, and so on.
+                </td>
+            </tr>
+            <tr>
+                <td>alive</td>
+                <td><code>alive(SET)</code></td>
+                <td>Integer</td>
+                <td>
+                    Iterates through the set 2 elements at a time, using the first as the relative row and the second as the relative column to a given cell.
+                    <br /><br />
+                    Returns the number of pairs for which the cell described by the relative row and column is alive.
+                    <br /><br />
+                    For example, <code>alive(set(1, 0))</code> will return 1 for a given cell if the cell below it is alive, 0 otherwise.
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</body>
+</html>

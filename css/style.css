@@ -1,0 +1,157 @@
+﻿body {
+    background-color: lavenderblush;
+    overflow-wrap: break-word;
+    padding: 0px;
+    margin: 0px;
+}
+
+h1 {
+    font-family: Verdana;
+    font-size: 32px;
+    font-weight: 100;
+}
+
+h2 {
+    font-family: Verdana;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+p {
+    font-family: Verdana;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+label {
+    font-family: Verdana;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+a {
+    font-family: Verdana;
+    font-size: 13px;
+    font-weight: 400;
+}
+a:link { text-decoration: none; }
+a:visited { text-decoration: none; }
+a:hover { text-decoration: none; }
+a:active { text-decoration: none; }
+
+code {
+    background-color: #eee;
+    border-radius: 3px;
+    font-family: courier, monospace;
+    padding: 0 3px;
+}
+
+.top-menu {
+    width: 100%;
+    text-align: left;
+    background-color: white;
+    box-shadow: 0px 3px 3px grey;
+    vertical-align: top;
+    display: inline-block;
+}
+
+.main-content {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 5%;
+    margin-right: 5%;
+    background-color: white;
+    box-shadow: 0px 3px 3px grey;
+}
+
+.bottom-menu {
+    width: auto;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    padding-left: 5%;
+    text-align: center;
+    background-color: white;
+}
+
+#canvas-title {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 0px;
+    text-align: center;
+}
+
+#canvas-wrapper {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+#canvas {
+    height: 90%;
+    max-width: 90%;
+    background-color: white;
+    border: 1px solid black;
+    margin: auto;
+}
+
+#settings-menu {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#configure-menu {
+    vertical-align: top;
+    display: inline-block;
+    width: auto;
+    margin-right: 5%;
+    text-align: left;
+}
+
+#play-menu {
+    vertical-align: top;
+    display: inline-block;
+    width: auto;
+    margin-right: 5%;
+    text-align: left;
+}
+
+#state-menu {
+    vertical-align: top;
+    display: inline-block;
+    width: auto;
+    margin-right: 5%;
+    text-align: left;
+}
+
+#file-menu {
+    vertical-align: top;
+    display: inline-block;
+    width: auto;
+    text-align: left;
+}
+
+hr.solid {
+    border-top: 3px solid #000000;
+}
+
+.rule-input {
+    font-family: Consolas;
+    resize: none;
+}
+
+table, th, td {
+    border: 1px solid;
+}
+
+td {
+    padding: 10px;
+}

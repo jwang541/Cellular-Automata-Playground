@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Cellular Automata</title>
+    <link href="css/style.css" rel="stylesheet" />
+
+    <script src="dependencies/jquery-3.6.0.min.js"></script>
+
+    <script src="js/abstract_syntax_tree.js"></script>
+    <script src="js/cellular_automaton.js"></script>
+    <script src="js/utility.js"></script>
+    <script src="js/globals.js"></script>
+    <script src="js/draw.js"></script>
+    <script src="js/controls.js"></script>
+    <script src="js/main.js"></script>
+    <noscript>Sorry, your browser does not support JavaScript.</noscript>
+</head>
+<body>
+    <div class="top-menu">
+        <div style="display: inline-block; padding-left: 5%">
+            <h1>Cellular Automata Playground</h1>
+        </div>
+        <div style="float: right; padding-right: 5%">
+            <a href="./index.html"><h2 style="margin-bottom: 0px; font-size: 16px">Playground</h2></a>
+            <a href="./documentation.html"><h2 style="font-size: 16px">Documentation</h2></a>
+        </div>
+    </div>
+    <div class="main-content">
+
+        <div id="canvas-wrapper">
+            <canvas id="canvas" width="1000" height="500"></canvas>
+        </div>
+        <hr class="solid">
+
+        <div id="settings-menu">
+            <div id="configure-menu" name="configure-menu">
+                <h2>Configure</h2>
+                <button type="button" id="update-configuration">Update changes</button>
+                <br /><br />
+                <div>
+                    <label for="board-rows">Rows:</label>
+                    <input type="number" id="board-rows" name="board-rows" min="10" max="300" style="margin-right: 50px">
+                    <label for="board-columns">Columns:</label>
+                    <input type="number" id="board-columns" name="board-columns" min="10" max="300">
+                </div>
+                <br />
+                <div>
+                    <label for="topology" style="margin-right: 20px;">Topology:</label>
+                    <input type="radio" id="bounded" name="topology" value="bounded" checked="checked">
+                    <label for="bounded" style="margin-right: 20px">Bounded</label>
+                    <input type="radio" id="wrapped" name="topology" value="wrapped">
+                    <label for="wrapped">Wrapped</label>
+                </div>
+                <br />
+                <div>
+                    <label for="rule-select">Ruleset:</label>
+                    <select name="rule-select" id="rule-select">
+                        <option value="conway">Conway's Game of Life</option>
+                        <option value="mazectric">Mazectric</option>
+                        <option value="replicator">Replicator</option>
+                        <option value="seeds">Seeds</option>
+                        <option value="downwards">Downwards</option>
+                        <option value="custom">Custom...</option>
+                    </select>
+                </div>
+                <br />
+                <div>
+                    <label for="alive-alive">Transition: Alive → Alive</label>
+                    <br />
+                    <textarea class="rule-input" type="text" id="alive-alive" cols="60" rows="5" disabled>alive(neighbors(1)) in set(2, 3)</textarea>
+                    <br /><br />
+                    <label for="dead-alive">Transition: Dead → Alive</label>
+                    <br />
+                    <textarea class="rule-input" type="text" id="dead-alive" cols="60" rows="5" disabled>alive(neighbors(1)) = 3</textarea>
+                    <br />
+                </div>
+            </div>
+            <div id="play-menu" name="play-menu">
+                <h2>Playback</h2>
+                <button type="button" id="play-simulation" style="display: block">Pause</button>
+                <br />
+                <button type="button" id="step-simulation" style="display: block">Step</button>
+                <p>
+                    *If you are sensitive to flashing lights, <br />
+                    please keep the steps/second low.
+                </p>
+                <p style="display: inline">Steps per second: </p>
+                <input type="number" min="1" max="100" value="1" id="speed-input" style="display: inline; margin-bottom: 10px" />
+                <input type="range" min="1" max="10" value="1" id="speed-slider" style="width: 200px; display: block" />
+                <br />
+                <button type="button" id="grid-visible">Show grid</button>
+            </div>
+            <div id="state-menu" name="state-menu">
+                <h2>State</h2>
+                <button type="button" id="blank-board">New blank board</button>
+                <br /><br />
+                <button type="button" id="random-board" style="margin-bottom: 10px">New uniform random board</button>
+                <input type="number" min="0" max="1" value="0.25" id="random-board-probability" />
+            </div>
+        </div>
+
+        <br />
+        <hr class="solid">
+
+        <h2>About</h2>
+        <p>
+            A cellular automaton is a grid of cells, each of which has a state (such as alive/dead).
+            To get the next "generation" of a cellular automaton,
+            the new state of each cell depends on the current states of the cells around it,
+            according to some set of rules.
+            <br /><br />
+            This is a tool for experimenting with cellular automata,
+            allowing you to vary the dimensions and topology of the board,
+            as well as choose a ruleset. 
+            You can also define a custom ruleset,
+            using a very simple formal language created for this webapp.
+            To update changes to the board or ruleset, press the "Update Changes" button.
+            <br /><br />
+            The maximum board dimensions are 300 x 300.
+            With higher board sizes, the simulation might run slowly.
+            The relative slowness of the simulation is partly due to the way the tool encodes the rulesets:
+            rather than being functions in the source code,
+            they are represented as abstract syntax trees,
+            which allows them to be easily modified at the cost of taking longer to evaluate.
+            <br /><br />
+        </p>
+        <hr class="solid">
+
+        <h2>Custom Rulesets</h2>
+        <p>
+            To define a custom ruleset, select "Custom..." in the ruleset dropdown menu above.
+            This will open the text input areas, allowing you to define a custom rule in formal language.
+            <br /><br />
+            You can also view the definitions of preexisting rules, 
+            in order to get a sense for the syntax the formal language uses.
+            <br /><br />
+            <a href="./documentation.html">Click here for more information on how to define custom rules.</a>
+        </p>
+    </div>
+    <div class="bottom-menu">
+        <p>Created by James Wang</p>
+        <a href="https://github.com/jwang541/Custom-Cellular-Automata" style="margin-right: 20px">Source code</a>
+        <a href="https://github.com/jwang541?tab=repositories">More projects</a>
+    </div>
+</body>
+</html>
